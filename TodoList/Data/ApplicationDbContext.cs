@@ -15,6 +15,8 @@ namespace TodoList.Data
         }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<TodoItem> TodoItem { get; set; }
+        public DbSet<TodoStatus> TodoStatus { get; set; }
+
 
     }
 }

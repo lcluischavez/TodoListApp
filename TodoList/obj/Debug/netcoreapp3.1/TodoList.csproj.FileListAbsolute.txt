@@ -154,3 +154,10 @@ C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\bin\Debug\netcoreapp3.1
 C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\TodoList.csproj.CoreCompileInputs.cache
 C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\TodoList.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\TodoList.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Views\TodoItems\Index.cshtml.g.cs
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Views\TodoItems\Create.cshtml.g.cs
