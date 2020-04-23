@@ -10,7 +10,7 @@ using TodoList.Data;
 namespace TodoList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200423040535_Initial")]
+    [Migration("20200423085017_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

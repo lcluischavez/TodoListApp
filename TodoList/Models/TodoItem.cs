@@ -15,7 +15,7 @@ namespace TodoList.Models
         [Required]
         public int TodoStatusId { get; set; }
         public TodoStatus TodoStatus { get; set; }
-        [Required]
+        //[Required]
         public int ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }
