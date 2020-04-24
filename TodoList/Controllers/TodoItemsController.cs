@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using TodoList.Models;
 
 namespace TodoList.Controllers
 {
+    [Authorize]
     public class TodoItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,7 +28,9 @@ namespace TodoList.Controllers
         // GET: TodoItems
         public async Task<ActionResult> Index()
         {
-            var  todoItems = await _context.TodoItem
+            var user = await GetCurrentUserAsync();
+            var todoItems = await _context.TodoItem
+                .Where(ti => ti.ApplicationUserId == user.Id)
                 .Include(tdi => tdi.ApplicationUser)
                 .Include(tdi => tdi.TodoStatus)
                 .ToListAsync();
@@ -76,19 +80,41 @@ namespace TodoList.Controllers
         }
 
         // GET: TodoItems/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var allTodoStatuses = _context.TodoStatus
+                .Select(s => new SelectListItem() { Text = s.Title, Value = s.Id.ToString() })
+                .ToList();
+
+            var viewModel = new TodoItemCreateViewModel();
+
+            viewModel.TodoStatusOptions = allTodoStatuses;
+
+            var item = await _context.TodoItem.FirstOrDefaultAsync(ti => ti.Id == id);
+            var loggedInUser = await GetCurrentUserAsync();
+
+            if (item.ApplicationUserId != loggedInUser.Id)
+            {
+                return NotFound();
+            }
+
+            return View(viewModel);
         }
+
+
 
         // POST: TodoItems/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, TodoItem todoItem)
         {
             try
             {
-                // TODO: Add update logic here
+                var user = await GetCurrentUserAsync();
+                todoItem.ApplicationUserId = user.Id;
+
+                _context.TodoItem.Update(todoItem);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }

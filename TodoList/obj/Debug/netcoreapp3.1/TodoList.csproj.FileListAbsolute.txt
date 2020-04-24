@@ -161,3 +161,4 @@ C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1
 C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Views\TodoItems\Index.cshtml.g.cs
 C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Views\TodoItems\Create.cshtml.g.cs
+C:\Users\Luis Chavez\Desktop\workspace\TodoList\TodoList\obj\Debug\netcoreapp3.1\Razor\Views\TodoItems\Edit.cshtml.g.cs
