@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,19 +15,21 @@ namespace TodoList.Controllers
     public class TodoItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TodoItemsController(ApplicationDbContext context)
+        public TodoItemsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: TodoItems
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var todoItems = _context.TodoItem
-                .Include(tds => tds.ApplicationUser)
-                .Include(a => a.ApplicationUser)
-                .ToList();
+            var  todoItems = await _context.TodoItem
+                .Include(tdi => tdi.ApplicationUser)
+                .Include(tdi => tdi.TodoStatus)
+                .ToListAsync();
 
             return View(todoItems);
         }
@@ -54,11 +57,15 @@ namespace TodoList.Controllers
         // POST: TodoItems/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(TodoItem todoItem)
         {
             try
             {
-                // TODO: Add insert logic here
+                var user = await GetCurrentUserAsync();
+                todoItem.ApplicationUserId = user.Id;
+
+                _context.TodoItem.Add(todoItem);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -113,5 +120,7 @@ namespace TodoList.Controllers
                 return View();
             }
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }
